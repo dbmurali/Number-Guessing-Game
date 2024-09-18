@@ -30,13 +30,17 @@ def game():
     user=input("print E for easy and H for Hard: ").lower()
     life=set_level(user)
     while life>0:
-        guess=int(input("enter the number you guess: "))
-        life=check_answer(guess,og_number,life)
-        if life<=10:
-         print(f"life remaining : {life*HEART} ")
-        elif life==20:
-            print(WIN)
-            life=-1
+        try:
+            guess=int(input("enter the number you guess: "))
+            life=check_answer(guess,og_number,life)
+            if life<=10:
+             print(f"life remaining : {life*HEART} ")
+            elif life==20:
+                print(WIN)
+                life=-1
+        except ValueError:
+            print("The value you typed is incorrect. Numerical values are the only ones accepted.")
+         
     print(GAME_OVER)
 
     redo=input("enter y for re start start or N for end").lower()
